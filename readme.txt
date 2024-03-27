@@ -1,20 +1,6 @@
-# SANGO
-Bold and handy WordPress theme
-Version 1.5
-
-## DEMO
-https://saruwakakun.design/
-
-## Copyright
-The php files in SANGO theme are under GNU General Public License(http://www.gnu.org/licenses/gpl-3.0.html).
-On the other hand, copyright of CSS, Javascript and some of images belongs to saruwakakun.com.
-
-#### Special Thanks to Bones
-SANGO was created with the help of Bones.
-Author: Eddie Machado
-URL: http://themble.com/bones
-License: WTFPL
-License URL: http://sam.zoy.org/wtfpl/
+# 禅京園
+禅京園テーマ
+Version 1.0
 
 #### FontAwesome
 Font License: SIL OFL 1.1
@@ -40,6 +26,3 @@ URL: https://gist.github.com/tovic/d7b310dea3b33e4732c0#file-php-html-css-js-min
 License: MIT
 AUTHOR: Mika Tuupola
 URL: https://github.com/tuupola/jquery_lazyload/blob/2.x/LICENSE.md
-
-## Submit Bugs
-nodding.com@gmail.com

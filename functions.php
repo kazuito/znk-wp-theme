@@ -1,160 +1,171 @@
 <?php
-require_once( 'library/functions/custom-field.php' );
-require_once( 'library/functions/head.php' );
-require_once( 'library/functions/style-shortcode.php' );
-require_once( 'library/functions/sng-function.php' );
-require_once( 'library/functions/entry-function.php' );
-require_once( 'library/functions/widget-setting.php' );
-require_once( 'library/functions/sng-style-scripts.php' );
-require_once( 'library/functions/customizer.php' );
+require_once('library/functions/custom-field.php');
+require_once('library/functions/head.php');
+require_once('library/functions/style-shortcode.php');
+require_once('library/functions/sng-function.php');
+require_once('library/functions/entry-function.php');
+require_once('library/functions/widget-setting.php');
+require_once('library/functions/sng-style-scripts.php');
+require_once('library/functions/customizer.php');
 
 /* ------------------------------
    セットアップ
    ------------------------------ */
-function sng_after_setup() {
+function sng_after_setup()
+{
   //エディタのCSS
-  add_editor_style( get_template_directory_uri() . '/library/css/editor-style.css?ver14' );
+  add_editor_style(get_template_directory_uri() . '/library/css/editor-style.css?ver14');
 
   //SETUP1)headの不要タグを除去
-  add_action( 'init', 'sng_head_cleanup' );
+  add_action('init', 'sng_head_cleanup');
 
   //SETUP2)RSSからWPのバージョンを削除
-  add_filter( 'the_generator', 'sng_rss_version' );
+  add_filter('the_generator', 'sng_rss_version');
 
   //SETUP3)最近のコメントウィジェットに適用されるCSSを削除
-  add_filter( 'wp_head', 'sng_remove_wp_widget_recent_comments_style', 1 );
-  add_action( 'wp_head', 'sng_remove_recent_comments_style', 1 );
+  add_filter('wp_head', 'sng_remove_wp_widget_recent_comments_style', 1);
+  add_action('wp_head', 'sng_remove_recent_comments_style', 1);
 
   //SETUP4)ギャラリースタイルに適用されるCSSを削除
-  add_filter( 'gallery_style', 'sng_gallery_style' );
+  add_filter('gallery_style', 'sng_gallery_style');
 
   //SETUP5)各種CSSとJSを読み込み(sng-style-scripts.php)
-  add_action( 'wp_enqueue_scripts', 'sng_scripts_and_styles', 999 );
+  add_action('wp_enqueue_scripts', 'sng_scripts_and_styles', 999);
 
   //SETUP6) 各種THEME SUPPORT
   sng_theme_support();
 
   //SETUP7)
-  add_action( 'widgets_init', 'sng_register_sidebars' );
-
+  add_action('widgets_init', 'sng_register_sidebars');
 } /* end sng_after_setup */
-add_action( 'after_setup_theme', 'sng_after_setup' );
+add_action('after_setup_theme', 'sng_after_setup');
 
 
 
 /*****************************
 SETUP1) headの不要タグを除去
-******************************/
+ ******************************/
 
-function sng_head_cleanup() {
+function sng_head_cleanup()
+{
   // カテゴリ等のフィードを削除
   // * 以下一文をコメントアウトすれば表示されるように
-  remove_action( 'wp_head', 'feed_links_extra', 3 );
+  remove_action('wp_head', 'feed_links_extra', 3);
 
   // リモート投稿用のリンクの出力は一応残しておきます
   // remove_action( 'wp_head', 'rsd_link' );
 
   // Windows Live Writer用のリンクを削除（使わないですよね）
-  remove_action( 'wp_head', 'wlwmanifest_link' );
+  remove_action('wp_head', 'wlwmanifest_link');
 
   // 前後の記事等へのrel linkを削除
-  remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
-  remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
-  remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
+  remove_action('wp_head', 'parent_post_rel_link', 10, 0);
+  remove_action('wp_head', 'start_post_rel_link', 10, 0);
+  remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 
   // WPのバージョン表示も削除
-  remove_action( 'wp_head', 'wp_generator' );
+  remove_action('wp_head', 'wp_generator');
 
   //CSSやJSファイルに付与されるWordPressのバージョンを消す
   //下記の関数を指定
-  add_filter( 'style_loader_src', 'sng_remove_wp_ver_css_js', 9999 );
-  add_filter( 'script_loader_src', 'sng_remove_wp_ver_css_js', 9999 );
-
+  add_filter('style_loader_src', 'sng_remove_wp_ver_css_js', 9999);
+  add_filter('script_loader_src', 'sng_remove_wp_ver_css_js', 9999);
 } /* end sng head cleanup */
 
-function sng_remove_wp_ver_css_js( $src ) {
-  if ( strpos( $src, 'ver=' ) )
-    $src = remove_query_arg( 'ver', $src );
+function sng_remove_wp_ver_css_js($src)
+{
+  if (strpos($src, 'ver='))
+    $src = remove_query_arg('ver', $src);
   return $src;
 }
 
 /*****************************
 SETUP2) RSSからWPのバージョンを削除
-******************************/
-function sng_rss_version() { return ''; }
+ ******************************/
+function sng_rss_version()
+{
+  return '';
+}
 
 /*****************************
 SETUP3) 「最近のコメント」ウィジェットに適用されるCSSを削除
-******************************/
-function sng_remove_wp_widget_recent_comments_style() {
-  if ( has_filter( 'wp_head', 'wp_widget_recent_comments_style' ) ) {
-    remove_filter( 'wp_head', 'wp_widget_recent_comments_style' );
+ ******************************/
+function sng_remove_wp_widget_recent_comments_style()
+{
+  if (has_filter('wp_head', 'wp_widget_recent_comments_style')) {
+    remove_filter('wp_head', 'wp_widget_recent_comments_style');
   }
 }
-function sng_remove_recent_comments_style() {
+function sng_remove_recent_comments_style()
+{
   global $wp_widget_factory;
   if (isset($wp_widget_factory->widgets['WP_Widget_Recent_Comments'])) {
-    remove_action( 'wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style') );
+    remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
   }
 }
 
 /*****************************
 SETUP4) ギャラリーに適用されるCSSを削除
-******************************/
-function sng_gallery_style($css) {
-  return preg_replace( "!<style type='text/css'>(.*?)</style>!s", '', $css );
+ ******************************/
+function sng_gallery_style($css)
+{
+  return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
 }
 
 /*****************************
 SETUP5) 各種CSS/JSを読み込み
         sng-style-scripts.phpで
-******************************/
+ ******************************/
 
 /*****************************
 SETUP6) THEME SUPPORT
-******************************/
-function sng_theme_support() {
+ ******************************/
+function sng_theme_support()
+{
 
   // サムネイル画像を使用可能に
-  add_theme_support( 'post-thumbnails' );
+  add_theme_support('post-thumbnails');
 
   // デフォルトのサムネイルサイズ
   set_post_thumbnail_size(125, 125, true);
 
-    add_image_size( 'thumb-520', 520, 300, true );//関連記事等で利用
-    add_image_size( 'thumb-160', 160, 160, true );//サムネイルサイズ
+  add_image_size('thumb-520', 520, 300, true); //関連記事等で利用
+  add_image_size('thumb-160', 160, 160, true); //サムネイルサイズ
 
-    function sng_custom_image_sizes( $sizes ) {
-        return array_merge( $sizes, array(
-            'thumb-520' => '520 x 300px',
-            'thumb-160' => '160 x 160px',
-        ) );
-    }
-    add_filter( 'image_size_names_choose', 'sng_custom_image_sizes' );
+  function sng_custom_image_sizes($sizes)
+  {
+    return array_merge($sizes, array(
+      'thumb-520' => '520 x 300px',
+      'thumb-160' => '160 x 160px',
+    ));
+  }
+  add_filter('image_size_names_choose', 'sng_custom_image_sizes');
 
   //SVGをアップロードできるように
-  function enable_svg($mimes) {
+  function enable_svg($mimes)
+  {
     $mimes['svg'] = 'image/svg+xml';
     return $mimes;
   }
   add_filter('upload_mimes', 'enable_svg');
 
   // カスタム背景
-  add_theme_support( 'custom-background',
-      array(
+  add_theme_support(
+    'custom-background',
+    array(
       'default-image' => '',
       'default-color' => '',
       'wp-head-callback' => '_custom_background_cb',
       'admin-head-callback' => '',
       'admin-preview-callback' => ''
-      )
+    )
   );
 
   // rssリンクをhead内に出力
   add_theme_support('automatic-feed-links');
 
   // メニューを有効に
-  add_theme_support( 'menus' );
+  add_theme_support('menus');
 
   // メニューを登録
   register_nav_menus(
@@ -167,18 +178,18 @@ function sng_theme_support() {
   );
 
   // HTML5マークアップをサポート
-  add_theme_support( 'html5', array(
+  add_theme_support('html5', array(
     'comment-list',
     'search-form',
     'comment-form'
-  ) );
-
+  ));
 } /* end theme support */
 
 /*********************************
  STEP7. サイドバー/ウィジェットの登録
-***********************************/
-function sng_register_sidebars() {
+ ***********************************/
+function sng_register_sidebars()
+{
   //メインのサイドバー
   register_sidebar(array(
     'id' => 'sidebar1',
@@ -334,16 +345,61 @@ function sng_register_sidebars() {
     'before_title' => '<h3 class="h-undeline related_title">',
     'after_title' => '</h3>',
   ));
-
 } //END sng_register_sidebars
 
+add_filter('the_content', 'insert_ad_before_h2', 9999);
+function insert_ad_before_h2($content)
+{
+  if (!is_single()) return $content; // 投稿ページのみに適用
+
+  $ad_code = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9195551442108164"
+   crossorigin="anonymous"></script>
+<!-- 記事内広告：No scroll -->
+<ins class="adsbygoogle"
+   style="display:block"
+   data-ad-client="ca-pub-9195551442108164"
+   data-ad-slot="1217246658"
+   data-ad-format="auto"
+   data-full-width-responsive="true"></ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script>'; // 広告コード
+
+  $split_by = '<h2';
+  $content_parts = explode($split_by, $content);
+  $new_content = '';
+
+  foreach ($content_parts as $key => $part) {
+    if ($key === 0) {
+      $new_content .= $part;
+      continue;
+    } else if ($key % 2 === 0) {
+      $new_content .= $split_by . $part;
+      continue;
+    }
+    $new_content .= $ad_code . $split_by . $part;
+  }
+  return $new_content;
+}
+
+function znk_echo_yt_video_list()
+{
+  $recentVideos = get_option("znk-recent-yt-videos");
+
+  if (!$recentVideos) {
+  }
+?>
+  <div>
+  </div>
+<?php }
+
 /* ------------------------------その他の設定------------------------------ */
-  /*********************
+/*********************
    テーマのアップデートチェック
-  *********************/
-  require 'theme-update-checker.php';
-  $example_update_checker = new ThemeUpdateChecker(
+ *********************/
+require 'theme-update-checker.php';
+$example_update_checker = new ThemeUpdateChecker(
   'sango-theme',
   'https://saruwakakun.design/wp-content/uploads/update-info.json'
-  );
+);
 ?>

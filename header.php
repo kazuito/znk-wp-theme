@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,15 @@
   <meta name="theme-color" content="<?php echo get_theme_mod('main_color', '#6bb6ff'); ?>">
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
-  <script type="application/ld+json">{"@context": "https://schema.org","@type": "WebSite","name": "禅京園","alternateName": "ZENKYOEN","url": "https://www.zenkyoen.com/"}</script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "禅京園",
+      "alternateName": "ZENKYOEN",
+      "url": "https://www.zenkyoen.com/"
+    }
+  </script>
 
   <!-- Detect AdBlocker -->
   <script async src="https://fundingchoicesmessages.google.com/i/pub-9195551442108164?ers=1" nonce="Czccwt4PeH9gKSfB3wY3Lg"></script>
@@ -67,7 +76,7 @@
         <?php //ロゴまわり
         $title_tag = (is_home() || is_front_page()) ? 'h1' : 'p'; //トップページのみタイトルをh1に
         ?>
-        <<?php echo $title_tag; ?> id="logo" class="h1 dfont" >
+        <<?php echo $title_tag; ?> id="logo" class="h1 dfont">
           <span class="v-hidden"><?php bloginfo("name"); ?></span>
           <a href="<?php echo home_url(); ?>">
             <?php $logo = esc_url(get_option('logo_image_upload'));
@@ -91,37 +100,39 @@
         } //END PC用ヘッダーナビ 
         ?>
 
-      <?php //モバイル用ナビ
-      if (wp_is_mobile() && has_nav_menu('mobile-nav')) {
-        echo '<nav class="mobile-nav">';
-        wp_nav_menu(array(
-          'container' => false,
-          'theme_location' => 'mobile-nav',
-          'depth' => 1,
-          'fallback_cb' => ''
-        ));
-        echo '</nav>';
-      } //END モバイル用ナビ 
-      ?>
-  
-		<div class="lang-switcher-wrapper" style="margin-left: auto;" >
-			<select name="znk-lang-switcher" id="znk-lang-switcher" style="margin-bottom: 0; cursor: pointer; color: white; background-color: transparent;">
-		  <?
-			$translations = pll_the_languages(array("raw"=>1));
-			foreach($translations as $lang=>$item) { ?>
-				<option value="<? echo $item['url'] ?>" <? if($lang===pll_current_language()) echo "selected" ?>>
- 					<? echo $item["name"]; ?>
-				</option>
-			<? } ?>
-			</select>
-		</div>
-    </div>
-	<script>
-			  $("#znk-lang-switcher").on("change", (e)=>{
-				  const url = $(e.target).val();
-				  window.location.href = url;
-			  })
-		</script>
+        <?php //モバイル用ナビ
+        if (wp_is_mobile() && has_nav_menu('mobile-nav')) {
+          echo '<nav class="mobile-nav">';
+          wp_nav_menu(array(
+            'container' => false,
+            'theme_location' => 'mobile-nav',
+            'depth' => 1,
+            'fallback_cb' => ''
+          ));
+          echo '</nav>';
+        } //END モバイル用ナビ 
+        ?>
+
+        <? if(function_exists('pll_the_languages')): ?>
+        <div class="lang-switcher-wrapper" style="margin-left: auto;">
+          <select name="znk-lang-switcher" id="znk-lang-switcher" style="margin-bottom: 0; cursor: pointer; color: white; background-color: transparent;">
+            <?
+            $translations = pll_the_languages(array("raw" => 1));
+            foreach ($translations as $lang => $item) { ?>
+              <option value="<? echo $item['url'] ?>" <? if ($lang === pll_current_language()) echo "selected" ?>>
+                <? echo $item["name"]; ?>
+              </option>
+            <? } ?>
+          </select>
+        </div>
+        <? endif; ?>
+      </div>
+      <script>
+        $("#znk-lang-switcher").on("change", (e) => {
+          const url = $(e.target).val();
+          window.location.href = url;
+        })
+      </script>
     </header>
     <?php if (get_option('header_info_text')) { //お知らせ欄
       echo '<div class="header-info"><a href="' . get_option('header_info_url') . '">' . get_option('header_info_text') . '</a></div>';

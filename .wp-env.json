@@ -6,5 +6,11 @@
     "WP_DEBUG_DISPLAY": true
   },
   "plugins": [],
-  "themes": ["."]
+  "themes": ["."],
+  "port": 8989,
+  "env": {
+    "tests": {
+      "port": 8990
+    }
+  }
 }

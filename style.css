@@ -1,13 +1,11 @@
 @charset "UTF-8";
 /*
-Theme Name: SANGO
-Theme URI: https://saruwakakun.design
-Description: SANGOへようこそ！テーマの設定方法は<a href="https://saruwakakun.com/sango">カスタマイズガイド</a>を参照してください。
-Author: SARUWAKA
-Author URI: https://saruwakakun.com
-Version: 1.5
-Text Domain: sango
-License URI: https://saruwakakun.design/term
+Theme Name: 禅京園
+Description: 禅京園テーマ
+Author: 禅京園
+Author URI: https://www.zenkyoen.com
+Version: 1.0
+Text Domain: znk-theme
 -------------------------------------------------*/
 /*IE8,9で未定義のため*/
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {
