@@ -43,14 +43,14 @@
   </script>
 
   <!-- Cursor Effect -->
-  <script type="module">
+  <!-- <script type="module">
     import {
       emojiCursor
     } from "https://unpkg.com/cursor-effects@latest/dist/esm.js";
     new emojiCursor({
       emoji: ["🍵", "🌸", "⛩️", "🏮", "🍣", "🍜", "🍡", "🌸", "🌸"]
     })
-  </script>
+  </script> -->
 
   <?php wp_head(); //削除禁止 
   ?>
@@ -113,18 +113,18 @@
         } //END モバイル用ナビ 
         ?>
 
-        <? if(function_exists('pll_the_languages')): ?>
-        <div class="lang-switcher-wrapper" style="margin-left: auto;">
-          <select name="znk-lang-switcher" id="znk-lang-switcher" style="margin-bottom: 0; cursor: pointer; color: white; background-color: transparent;">
-            <?
-            $translations = pll_the_languages(array("raw" => 1));
-            foreach ($translations as $lang => $item) { ?>
-              <option value="<? echo $item['url'] ?>" <? if ($lang === pll_current_language()) echo "selected" ?>>
-                <? echo $item["name"]; ?>
-              </option>
-            <? } ?>
-          </select>
-        </div>
+        <? if (function_exists('pll_the_languages')) : ?>
+          <div class="lang-switcher-wrapper" style="margin-left: auto;">
+            <select name="znk-lang-switcher" id="znk-lang-switcher" style="margin-bottom: 0; cursor: pointer; color: white; background-color: transparent;">
+              <?
+              $translations = pll_the_languages(array("raw" => 1));
+              foreach ($translations as $lang => $item) { ?>
+                <option value="<? echo $item['url'] ?>" <? if ($lang === pll_current_language()) echo "selected" ?>>
+                  <? echo $item["name"]; ?>
+                </option>
+              <? } ?>
+            </select>
+          </div>
         <? endif; ?>
       </div>
       <script>
