@@ -29,7 +29,7 @@
 </div>
 <!-- Floating Button -->
 <div class="tw-fixed tw-bottom-3 tw-left-3 tw-right-3 tw-z-[999] sm:tw-w-fit sm:tw-ml-auto">
-	<a href="https://store.zenkyoen.com?utm_source=zenkyoen-media&utm_medium=banner&utm_id=article-page-floating-button&utm_content=floating-button-bottom" target="_blank" class="tw-flex tw-items-center tw-gap-2 tw-py-3 tw-px-4 tw-bg-blue-600 tw-text-white tw-rounded-xl tw-no-underline tw-shadow-lg hover:tw-scale-[1.02] active:tw-scale-95 tw-transition-all hover:tw-no-underline tw-animate-pop-appear">
+	<a href="https://store.zenkyoen.com?utm_source=zenkyoen-media&utm_medium=banner&utm_id=article-page-floating-button&utm_content=floating-button-bottom" target="_blank" class="tw-flex tw-items-center tw-gap-2 tw-py-3 tw-px-4 tw-bg-blue-600 tw-text-white tw-rounded-xl tw-no-underline tw-shadow-lg hover:tw-scale-[1.02] active:tw-scale-95 tw-transition-all hover:tw-no-underline tw-animate-pop-appear sm:tw-px-5">
 		<div class="tw-h-5 tw-w-5 tw-shrink-0">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<path stroke="none" d="M0 0h24v24H0z" fill="none" />

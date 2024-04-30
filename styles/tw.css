@@ -214,6 +214,16 @@
     width: -moz-fit-content;
     width: fit-content
   }
+
+  .sm\:tw-px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem
+  }
+
+  .sm\:tw-px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem
+  }
 }
 
 @media (prefers-color-scheme: dark) {
