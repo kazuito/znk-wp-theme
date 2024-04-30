@@ -18,8 +18,11 @@ function sng_scripts_and_styles()
     //メイン
     wp_register_style('sng-stylesheet', get_template_directory_uri() . '/style.css?ver15', array(), '', 'all');
 
-    // overwrite
+    // znk overwrite
     wp_register_style('sng-stylesheet-overwrite', get_template_directory_uri() . '/styles/overwrite.css', array(), '', 'all');
+
+    // znk tailwind
+    wp_register_style("znk-tailwind", get_template_directory_uri() . "/styles/tw.css", array(), "", "all");
 
     //主に投稿ページで使われるスタイル（ショートコード等）
     wp_register_style('sng-option', get_template_directory_uri() . '/entry-option.css?ver15', array('sng-stylesheet'), '', 'all');
@@ -38,6 +41,7 @@ function sng_scripts_and_styles()
     wp_enqueue_script('sng-modernizr');
     wp_enqueue_style('sng-stylesheet');
     wp_enqueue_style('sng-stylesheet-overwrite');
+    wp_enqueue_style('znk-tailwind');
     wp_enqueue_style('sng-option');
     // wp_enqueue_style( 'sng-googlefonts' );
     wp_enqueue_style('sng-fontawesome');
