@@ -10,20 +10,20 @@
 					<?php
 					get_template_part('parts/single/entry-header.v2'); //タイトルまわり
 					get_template_part('parts/single/entry-content.v2'); //本文まわり
-					get_template_part('parts/single/entry-footer'); //記事フッターまわり
-					comments_template(); //コメント
+					get_template_part('parts/single/entry-footer.v2'); //記事フッターまわり
+					// comments_template(); //コメント
 					insert_json_ld(); //構造化データ
 					?>
 				</article>
-				<?php get_template_part('parts/single/prev-next-entry'); //前後の記事へのリンク
-				?>
+				<!-- <?php get_template_part('parts/single/prev-next-entry'); //前後の記事へのリンク
+				?> -->
 			<?php endwhile; ?>
 		<?php else : ?>
 			<?php get_template_part('content', 'not-found'); //コンテンツが見つからない場合
 			?>
 		<?php endif; ?>
 	</main>
-	<?php get_sidebar(); ?>
+	<!-- <?php get_sidebar(); ?> -->
 </div>
 <!-- Floating Button -->
 <div class="tw-fixed tw-bottom-3 tw-left-3 tw-right-3 tw-z-[999] sm:tw-w-fit sm:tw-ml-auto">
@@ -42,7 +42,7 @@
 		</span>
 	</a>
 </div>
-<?php get_footer(); ?>
+<!-- <?php get_footer(); ?> -->
 <?php //アクセス数をカウント：人気記事ウィジェットのため
 if (!is_bot() && !is_user_logged_in()) {
 	sng_set_post_views(get_the_ID());

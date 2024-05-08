@@ -347,6 +347,10 @@ function sng_register_sidebars()
   ));
 } //END sng_register_sidebars
 
+function znk_asset_url($path) {
+  return get_template_directory_uri() . '/assets/' . $path;
+}
+
 // add_filter('the_content', 'insert_ad_before_h2', 9999);
 // function insert_ad_before_h2($content)
 // {

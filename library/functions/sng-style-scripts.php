@@ -18,9 +18,6 @@ function sng_scripts_and_styles()
     //メイン
     wp_register_style('sng-stylesheet', get_template_directory_uri() . '/style.css?ver15', array(), '', 'all');
 
-    // znk overwrite
-    wp_register_style('sng-stylesheet-overwrite', get_template_directory_uri() . '/styles/overwrite.css', array(), '', 'all');
-
     // znk tailwind
     wp_register_style("znk-tailwind", get_template_directory_uri() . "/styles/tw.css", array(), "", "all");
 
@@ -40,7 +37,6 @@ function sng_scripts_and_styles()
     // enqueue styles and scripts
     wp_enqueue_script('sng-modernizr');
     wp_enqueue_style('sng-stylesheet');
-    wp_enqueue_style('sng-stylesheet-overwrite');
     wp_enqueue_style('znk-tailwind');
     wp_enqueue_style('sng-option');
     // wp_enqueue_style( 'sng-googlefonts' );

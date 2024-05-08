@@ -1,8 +1,18 @@
 <header>
   <div class="tw-h-40 tw-overflow-hidden tw-relative">
-    <?php the_post_thumbnail("large", array(
-      "class" => "tw-w-full tw-h-full tw-object-cover tw-object-center"
-    )) ?>
+
+    <?php
+    if (get_the_post_thumbnail()) {
+      the_post_thumbnail("large", array(
+        "class" => "tw-w-full tw-h-full tw-object-cover tw-object-center"
+      ));
+    } else {
+    ?>
+      <img src="<?php echo znk_asset_url("images/default-thumbnail.jpg"); ?>" alt="<?php the_title() ?>" class="tw-w-full tw-h-full tw-object-cover tw-object-center">
+    <?php
+
+    }
+    ?>
     <div class="tw-absolute tw-left-3 -tw-bottom-0.5 tw-px-3 tw-py-2 tw-bg-white tw-rounded-t-lg">
       <div class="tw-flex tw-items-center tw-text-sm tw-font-bold tw-gap-1">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
@@ -41,7 +51,7 @@
       </div>
     </div>
   </div>
-  <h1 class="tw-px-3 tw-my-3 tw-leading-tight tw-text-2xl tw-text-black tw-font-semibold">
+  <h1 class="tw-px-3 tw-my-5 tw-leading-tight tw-text-2xl tw-text-black tw-font-semibold">
     <?php the_title() ?>
   </h1>
 </header>
