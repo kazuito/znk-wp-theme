@@ -130,7 +130,7 @@ article.cf.post.type-post {
   }
 
   /* 	Heading */
-  & > h2 {
+  /* & > h2 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -151,7 +151,7 @@ article.cf.post.type-post {
       left: 0;
       opacity: 0.8;
     }
-  }
+  } */
   & > h3 {
     padding: 0;
     margin: 2.5rem 0 1.25rem;

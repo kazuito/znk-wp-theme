@@ -16,7 +16,7 @@
 	      				<?php endif; ?>
 			        </header>
 							<section class="entry-content cf">
-								<? echo get_option("ad--in-article") ?>
+								<!-- <? echo get_option("ad--in-article") ?> -->
                 <?php
                   the_content();
                   wp_link_pages( array(

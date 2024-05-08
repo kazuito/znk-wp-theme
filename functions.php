@@ -347,40 +347,40 @@ function sng_register_sidebars()
   ));
 } //END sng_register_sidebars
 
-add_filter('the_content', 'insert_ad_before_h2', 9999);
-function insert_ad_before_h2($content)
-{
-  if (!is_single()) return $content; // 投稿ページのみに適用
+// add_filter('the_content', 'insert_ad_before_h2', 9999);
+// function insert_ad_before_h2($content)
+// {
+//   if (!is_single()) return $content; // 投稿ページのみに適用
 
-  $ad_code = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9195551442108164"
-   crossorigin="anonymous"></script>
-<!-- 記事内広告：No scroll -->
-<ins class="adsbygoogle"
-   style="display:block"
-   data-ad-client="ca-pub-9195551442108164"
-   data-ad-slot="1217246658"
-   data-ad-format="auto"
-   data-full-width-responsive="true"></ins>
-<script>
-   (adsbygoogle = window.adsbygoogle || []).push({});
-</script>'; // 広告コード
+//   $ad_code = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9195551442108164"
+//    crossorigin="anonymous"></script>
+// <!-- 記事内広告：No scroll -->
+// <ins class="adsbygoogle"
+//    style="display:block"
+//    data-ad-client="ca-pub-9195551442108164"
+//    data-ad-slot="1217246658"
+//    data-ad-format="auto"
+//    data-full-width-responsive="true"></ins>
+// <script>
+//    (adsbygoogle = window.adsbygoogle || []).push({});
+// </script>'; // 広告コード
 
-  $split_by = '<h2';
-  $content_parts = explode($split_by, $content);
-  $new_content = '';
+//   $split_by = '<h2';
+//   $content_parts = explode($split_by, $content);
+//   $new_content = '';
 
-  foreach ($content_parts as $key => $part) {
-    if ($key === 0) {
-      $new_content .= $part;
-      continue;
-    } else if ($key % 2 === 0) {
-      $new_content .= $split_by . $part;
-      continue;
-    }
-    $new_content .= $ad_code . $split_by . $part;
-  }
-  return $new_content;
-}
+//   foreach ($content_parts as $key => $part) {
+//     if ($key === 0) {
+//       $new_content .= $part;
+//       continue;
+//     } else if ($key % 2 === 0) {
+//       $new_content .= $split_by . $part;
+//       continue;
+//     }
+//     $new_content .= $ad_code . $split_by . $part;
+//   }
+//   return $new_content;
+// }
 
 function znk_echo_yt_video_list()
 {

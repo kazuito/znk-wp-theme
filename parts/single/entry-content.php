@@ -1,5 +1,5 @@
 <section class="entry-content cf">
-	<?php echo get_option("ad--in-article") ?>
+	<!-- <?php echo get_option("ad--in-article") ?> -->
 	<?php
 	$show_ads = (get_post_meta($post->ID, 'disable_ads', true)) ? null : "1";
 	//タイトル下広告（ウィジェットで設定）
